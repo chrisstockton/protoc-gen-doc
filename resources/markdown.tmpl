@@ -67,6 +67,20 @@
   | {{.Name}} | {{.Number}} | {{nobr .Description}} |
 {{end}}
 
+<!-- check if the enum contains required field annotations -->
+<!--  {{$length := len .Options}} {{if ne $length 0}} {{.Options}} {{end}} -->
+{{$has_field_requirements := index .Options "has_field_requirements"}} {{if $has_field_requirements}}
+### {{.LongName}} Required Fields
+
+| Name | Screen | Section | Component | Element | Fields |
+| ---- | ------ | ------- | --------- | ------- | ------ |
+{{range $i, $v := .Values -}}
+  {{range $requirement := index .Options "requirements" -}}
+  | {{$v.Name}} | {{$requirement.Location.Screen}} | {{$requirement.Location.Section}}| {{$requirement.Location.Component}} | {{$requirement.Location.Element}} | {{range $i, $v := $requirement.Parameters}}{{if $i}},{{end}}{{$v}}{{end}} |
+  {{end -}}
+{{end}}
+{{end}}
+
 {{end}} <!-- end enums -->
 
 {{if .HasExtensions}}

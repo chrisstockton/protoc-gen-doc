@@ -6,3 +6,7 @@
 /test/*.dat
 /vendor
 /tmp/
+bazel-bin
+bazel-out
+bazel-protoc-gen-doc
+bazel-testlogs

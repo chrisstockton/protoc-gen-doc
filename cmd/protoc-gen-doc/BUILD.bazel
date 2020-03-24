@@ -1,0 +1,37 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "flags.go",
+        "main.go",
+    ],
+    importpath = "github.com/example/project/cmd/protoc-gen-doc",
+    visibility = ["//visibility:private"],
+    deps = [
+        "@com_github_pseudomuto_protoc_gen_doc//:go_default_library",
+        "@com_github_pseudomuto_protoc_gen_doc//extensions/google_api_http:go_default_library",
+        "@com_github_pseudomuto_protoc_gen_doc//extensions/lyft_validate:go_default_library",
+        "@com_github_pseudomuto_protoc_gen_doc//extensions/validator_field:go_default_library",
+        "@com_github_pseudomuto_protokit//:go_default_library",
+    ],
+)
+
+go_binary(
+    name = "protoc-gen-doc",
+    embed = [":go_default_library"],
+    visibility = ["//visibility:public"],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = [
+        "flags_test.go",
+        "main_test.go",
+    ],
+    embed = [":go_default_library"],
+    deps = [
+        "@com_github_pseudomuto_protoc_gen_doc//cmd/protoc-gen-doc:go_default_library",
+        "@com_github_stretchr_testify//require:go_default_library",
+    ],
+)

@@ -60,6 +60,46 @@ func (p *Plugin) Generate(r *plugin_go.CodeGeneratorRequest) (*plugin_go.CodeGen
 	return resp, nil
 }
 
+func newTemplateWithAnnotations(descs []*protokit.FileDescriptor) *Template {
+	template := NewTemplate(descs)
+	addEnumOptionsToTemplate(template)
+
+	return template
+}
+
+func addEnumOptionsToTemplate(template *Template) {
+	for _, f := range template.Files {
+		if f.HasEnums {
+			for _, e := range f.Enums {
+				fr, err := getFieldRequirementsMap(f.Name, e.Name)
+				if err != nil {
+					return
+				}
+
+				// If we have field requirements for this enum, stick them in
+				// the options and add a flag to the enum's options.
+				if len(fr) != 0 {
+					if e.Options == nil {
+						e.Options = make(map[string]interface{})
+					}
+					e.Options["has_field_requirements"] = true
+
+					for _, v := range e.Values {
+						if v.Options == nil {
+							v.Options = make(map[string]interface{})
+						}
+						v.Options["requirements"] = fr
+					}
+				}
+			}
+		}
+	}
+}
+
+func getFieldRequirementsMap(protoFileName, enumName string) (map[string][]*interface{}, error) {
+	return make(map[string][]*interface{}), nil
+}
+
 func excludeUnwantedProtos(fds []*protokit.FileDescriptor, excludePatterns []*regexp.Regexp) []*protokit.FileDescriptor {
 	descs := make([]*protokit.FileDescriptor, 0)
 
