@@ -290,6 +290,144 @@ go_repository(
 go_repository(
     name = "com_github_kouzoh_mercari_data",
     importpath = "github.com/kouzoh/mercari-data",
-    sum = "h1:q3wKQLZXOA7kBKDF+P/mZJH7qbZTIjdjAu7yZuqfN9Q=",
-    version = "v0.0.26",
+    # sum = "h1:q3wKQLZXOA7kBKDF+P/mZJH7qbZTIjdjAu7yZuqfN9Q=",
+    # version = "v0.0.26",
+    commit = "2b5a719121c74b57d20d8b790abe38bc8ce30e8c",
+)
+
+go_repository(
+    name = "org_golang_google_grpc",
+    importpath = "google.golang.org/grpc",
+    sum = "h1:rRYRFMVgRv6E0D70Skyfsr28tDXIuuPZyWGMPdMcnXg=",
+    version = "v1.27.0",
+)
+
+go_repository(
+    name = "org_golang_x_net",
+    commit = "fe579d43d832",
+    importpath = "golang.org/x/net",
+)
+
+go_repository(
+    name = "org_golang_x_text",
+    commit = "17ff2d5776d2",
+    importpath = "golang.org/x/text",
+)
+
+go_repository(
+    name = "io_opencensus_go",
+    commit = "d7af601eacbd8e41ece0b1a9fbb9040c844d8fa4",
+    importpath = "go.opencensus.io",
+)
+
+go_repository(
+    name = "org_uber_go_zap",
+    importpath = "go.uber.org/zap",
+    tag = "v1.10.0",
+)
+
+go_repository(
+    name = "com_github_kouzoh_mercari_feature_flags",
+    commit = "cf62593ed8237e1a7b2025ad0193ebacd3428113",
+    importpath = "github.com/kouzoh/mercari-feature-flags",
+)
+
+go_repository(
+    name = "com_google_cloud_go",
+    importpath = "cloud.google.com/go",
+    tag = "v0.49.0",
+)
+
+go_repository(
+    name = "org_uber_go_multierr",
+    importpath = "go.uber.org/multierr",
+    tag = "v1.1.0",
+)
+
+go_repository(
+    name = "org_uber_go_atomic",
+    importpath = "go.uber.org/atomic",
+    tag = "v1.3.2",
+)
+
+go_repository(
+    name = "com_github_golang_groupcache",
+    commit = "869f871628b6baa9cfbc11732cdf6546b17c1298",
+    importpath = "github.com/golang/groupcache",
+)
+
+go_repository(
+    name = "com_github_googleapis_gax_go",
+    importpath = "github.com/googleapis/gax-go",
+    tag = "v2.0.4",
+)
+
+go_repository(
+    name = "org_golang_google_api",
+    importpath = "google.golang.org/api",
+    sum = "h1:jz2KixHX7EcCPiQrySzPdnYT7DbINAypCqKZ1Z7GM40=",
+    version = "v0.20.0",
+)
+
+go_repository(
+    name = "com_github_kouzoh_authority_sdk",
+    tag = "v1.2.0",
+    importpath = "github.com/kouzoh/authority-sdk",
+)
+
+go_repository(
+    name = "com_github_kouzoh_platform_client_go",
+    tag = "v0.282.0",
+    importpath = "github.com/kouzoh/platform-client-go",
+)
+
+go_repository(
+    name = "org_golang_x_oauth2",
+    commit = "e64efc72b421",
+    importpath = "golang.org/x/oauth2",
+)
+
+go_repository(
+    name = "in_gopkg_datadog_dd_trace_go_v1",
+    commit = "e5f04180d22a26bf4023d03b80eaa396fe31b82b",
+    importpath = "gopkg.in/DataDog/dd-trace-go.v1",
+)
+
+go_repository(
+    name = "com_github_dgrijalva_jwt_go",
+    importpath = "github.com/dgrijalva/jwt-go",
+    sum = "h1:7qlOGliEKZXTDg6OTjfoBKDXWrumCAMpl/TFQ4/5kLM=",
+    version = "v3.2.0+incompatible",
+)
+
+go_repository(
+    name = "com_github_grpc_ecosystem_go_grpc_middleware",
+    importpath = "github.com/grpc-ecosystem/go-grpc-middleware",
+    sum = "h1:THDBEeQ9xZ8JEaCLyLQqXMMdRqNr0QAUJTIkQAUtFjg=",
+    version = "v1.1.0",
+)
+
+go_repository(
+    name = "com_github_golang_mock",
+    importpath = "github.com/golang/mock",
+    tag = "v1.2.0",
+)
+
+go_repository(
+    name = "org_golang_x_xerrors",
+    commit = "a985d3407aa71f30cf86696ee0a2f409709f22e1",
+    importpath = "golang.org/x/xerrors",
+)
+
+go_repository(
+    name = "com_github_grpc_grpc_go",
+    importpath = "github.com/grpc/grpc-go",
+    sum = "h1:ZlWcXCu7hg5JCZMV7rdfR35H1or2I96TsyoenceWSi0=",
+    version = "v1.28.0",
+)
+
+go_repository(
+    name = "com_github_google_go_cmp",
+    importpath = "github.com/google/go-cmp",
+    tag = "v0.3.0",
 )

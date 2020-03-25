@@ -20,6 +20,9 @@ go_library(
     deps = [
         "//extensions:go_default_library",
         "@com_github_golang_protobuf//proto:go_default_library",
+        "@com_github_kouzoh_mercari_data//src/go/internal/events/core:go_default_library",
+        "@com_github_kouzoh_mercari_data//src/go/pkg/protoutils:go_default_library",
+        "@com_github_kouzoh_mercari_data//src/proto/event/v1beta/client:go_default_library",  # keep
         "@com_github_masterminds_sprig//:go_default_library",
         "@com_github_pseudomuto_protokit//:go_default_library",
         "@io_bazel_rules_go//proto/wkt:compiler_plugin_go_proto",

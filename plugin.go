@@ -9,6 +9,9 @@ import (
 
 	"github.com/golang/protobuf/proto"
 	plugin_go "github.com/golang/protobuf/protoc-gen-go/plugin"
+	"github.com/kouzoh/mercari-data/src/go/internal/events/core"
+	"github.com/kouzoh/mercari-data/src/go/pkg/protoutils"
+	_ "github.com/kouzoh/mercari-data/src/proto/event/v1beta/client" // imported for side effects
 	"github.com/pseudomuto/protokit"
 )
 
@@ -96,9 +99,18 @@ func addEnumOptionsToTemplate(template *Template) {
 	}
 }
 
-func getFieldRequirementsMap(protoFileName, enumName string) (map[string][]*interface{}, error) {
-	return make(map[string][]*interface{}), nil
+func getFieldRequirementsMap(protoFileName, enumName string) (map[string][]*core.FieldRequirements, error) {
+	annotations, err := protoutils.ExtractAnnotations(protoFileName, enumName)
+	if err != nil {
+		return nil, fmt.Errorf("can't get annotations for %s:%s, %v", protoFileName, enumName, err)
+	}
+
+	return core.CreateFieldRequirementsMap(annotations), nil
 }
+
+// func getFieldRequirementsMap(protoFileName, enumName string) (map[string][]*interface{}, error) {
+// 	return make(map[string][]*interface{}), nil
+// }
 
 func excludeUnwantedProtos(fds []*protokit.FileDescriptor, excludePatterns []*regexp.Regexp) []*protokit.FileDescriptor {
 	descs := make([]*protokit.FileDescriptor, 0)

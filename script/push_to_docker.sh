@@ -3,7 +3,10 @@ set -euo pipefail
 
 build_binary() {
   mkdir -p dist
-  GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -ldflags="-s -w" -o dist/protoc-gen-doc ./cmd/...
+  bazel build //cmd/protoc-gen-doc
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    cp bazel-bin/cmd/protoc-gen-doc/darwin_amd64_stripped/protoc-gen-doc dist/protoc-gen-doc
+  fi
 }
 
 build_and_tag_image() {

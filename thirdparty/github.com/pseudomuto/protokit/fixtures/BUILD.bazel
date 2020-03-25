@@ -11,7 +11,7 @@ proto_library(
 
 go_proto_library(
     name = "com_pseudomuto_protokit_v1_go_proto",
-    importpath = "github.com/example/project/thirdparty/github.com/pseudomuto/protokit/fixtures",
+    importpath = "github.com/pseudomuto/protoc-gen-doc/thirdparty/github.com/pseudomuto/protokit/fixtures",
     proto = ":com_pseudomuto_protokit_v1_proto",
     visibility = ["//visibility:public"],
 )
@@ -19,6 +19,6 @@ go_proto_library(
 go_library(
     name = "go_default_library",
     embed = [":com_pseudomuto_protokit_v1_go_proto"],
-    importpath = "github.com/example/project/thirdparty/github.com/pseudomuto/protokit/fixtures",
+    importpath = "github.com/pseudomuto/protoc-gen-doc/thirdparty/github.com/pseudomuto/protokit/fixtures",
     visibility = ["//visibility:public"],
 )
