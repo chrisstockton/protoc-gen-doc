@@ -177,10 +177,10 @@ go_repository(
 
 go_repository(
     name = "com_github_mwitkow_go_proto_validators",
-    importpath = "github.com/mwitkow/go-proto-validators",
-    sum = "h1:28i1IjGcx8AofiB4N3q5Yls55VEaitzuEPkFJEVgGkA=",
-    version = "v0.0.0-20180403085117-0950a7990007",
     build_extra_args = ["-exclude=src"],
+    importpath = "github.com/mwitkow/go-proto-validators",
+    sum = "h1:2WkInbIheqmDevK9h0S/K6f0Os/HlTPGJeRwDAeQE1w=",
+    version = "v0.3.0",
 )
 
 go_repository(
