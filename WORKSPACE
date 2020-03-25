@@ -286,3 +286,10 @@ go_repository(
     sum = "h1:+FNtrFTmVw0YZGpBGX56XDee331t6JAXeK2bcyhLOOc=",
     version = "v0.0.0-20200306205701-8dd3e2ee1dd5",
 )
+
+go_repository(
+    name = "com_github_kouzoh_mercari_data",
+    importpath = "github.com/kouzoh/mercari-data",
+    sum = "h1:q3wKQLZXOA7kBKDF+P/mZJH7qbZTIjdjAu7yZuqfN9Q=",
+    version = "v0.0.26",
+)
