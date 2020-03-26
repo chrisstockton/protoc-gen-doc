@@ -12,6 +12,11 @@ import (
 )
 
 func init() {
+	defer func() {
+		if r := recover(); r != nil {
+			// this thing panics for no apparent reason
+		}
+	}()
 	// NOTE: mwitkow/go-proto-validators uses gogo/profobuf/proto and therefore
 	// only registers the extension under gogo. We need to register it under
 	// golang/protobuf/proto with the same properties, except using the

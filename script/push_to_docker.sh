@@ -2,10 +2,13 @@
 set -euo pipefail
 
 build_binary() {
-  mkdir -p dist
-  bazel build //cmd/protoc-gen-doc
+  rm -rf ./dist
+  mkdir -p ./dist
+  bazel build --platforms=@io_bazel_rules_go//go/toolchain:linux_amd64 //cmd/protoc-gen-doc
   if [[ "$OSTYPE" == "darwin"* ]]; then
-    cp bazel-bin/cmd/protoc-gen-doc/darwin_amd64_stripped/protoc-gen-doc dist/protoc-gen-doc
+    cp bazel-bin/cmd/protoc-gen-doc/linux_amd64_pure_stripped/protoc-gen-doc dist/protoc-gen-doc
+  else
+    cp bazel-bin/src/go/cmd/protoc-gen-doc/linux_amd64_stripped/protoc-gen-doc dist/protoc-gen-doc
   fi
 }
 

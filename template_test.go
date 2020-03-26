@@ -1,6 +1,7 @@
 package gendoc_test
 
 import (
+	"fmt"
 	"os"
 	"testing"
 
@@ -22,7 +23,14 @@ var (
 func TestMain(m *testing.M) {
 	registerTestExtensions()
 
-	set, _ := utils.LoadDescriptorSet("fixtures", "fileset.pb")
+	set, err := utils.LoadDescriptorSet("data/fileset.pb")
+	if err != nil {
+		fmt.Println("GOT A BIGFAT ERROR")
+		fmt.Println(err)
+		val := os.Getenv("TEST_SRCDIR")
+		fmt.Println(val)
+		fmt.Println("DONE")
+	}
 	req := utils.CreateGenRequest(set, "Booking.proto", "Vehicle.proto")
 	result := protokit.ParseCodeGenRequest(req)
 

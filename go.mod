@@ -6,6 +6,7 @@ require (
 	github.com/aokoli/goutils v1.0.1 // indirect
 	github.com/bazelbuild/bazel-gazelle v0.20.0
 	github.com/envoyproxy/protoc-gen-validate v0.1.0
+	github.com/gogo/protobuf v1.3.1
 	github.com/golang/protobuf v1.3.2
 	github.com/googleapis/gax-go v2.0.2+incompatible // indirect
 	github.com/huandu/xstrings v1.0.0 // indirect

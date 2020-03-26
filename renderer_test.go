@@ -11,7 +11,7 @@ import (
 )
 
 func TestRenderers(t *testing.T) {
-	set, err := utils.LoadDescriptorSet("fixtures", "fileset.pb")
+	set, err := utils.LoadDescriptorSet("data", "fileset.pb")
 	require.NoError(t, err)
 
 	os.Mkdir("./tmp", os.ModePerm)

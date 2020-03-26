@@ -1,9 +1,12 @@
 package gendoc_test
 
 import (
+	"io/ioutil"
+	"os"
 	"regexp"
 	"testing"
 
+	"github.com/golang/protobuf/jsonpb"
 	"github.com/golang/protobuf/proto"
 	plugin_go "github.com/golang/protobuf/protoc-gen-go/plugin"
 	. "github.com/pseudomuto/protoc-gen-doc"
@@ -91,7 +94,7 @@ func TestRunPluginForBuiltinTemplate(t *testing.T) {
 
 func TestRunPluginForCustomTemplate(t *testing.T) {
 	req := new(plugin_go.CodeGeneratorRequest)
-	req.Parameter = proto.String("resources/html.tmpl,/base/name/only/output.html")
+	req.Parameter = proto.String("data/html.tmpl,/base/name/only/output.html")
 
 	plugin := new(Plugin)
 	resp, err := plugin.Generate(req)
@@ -108,4 +111,27 @@ func TestRunPluginWithInvalidOptions(t *testing.T) {
 	plugin := new(Plugin)
 	_, err := plugin.Generate(req)
 	require.Error(t, err)
+}
+
+func TestTemplate(t *testing.T) {
+	req := new(plugin_go.CodeGeneratorRequest)
+	file, err := os.Open("data/request.json")
+	if err != nil {
+		t.Fatal(err)
+	}
+	err = jsonpb.Unmarshal(file, req)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	plugin := new(Plugin)
+	resp, err := plugin.Generate(req)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	require.NoError(t, err)
+	require.NotEmpty(t, resp.File[0].GetContent())
+
+	ioutil.WriteFile("/tmp/"+resp.File[0].GetName(), []byte(resp.File[0].GetContent()), 0644)
 }

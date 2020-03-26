@@ -36,7 +36,7 @@ func (p *Plugin) Generate(r *plugin_go.CodeGeneratorRequest) (*plugin_go.CodeGen
 	}
 
 	result := excludeUnwantedProtos(protokit.ParseCodeGenRequest(r), options.ExcludePatterns)
-	template := NewTemplate(result)
+	template := newTemplateWithAnnotations(result)
 
 	customTemplate := ""
 
@@ -91,7 +91,7 @@ func addEnumOptionsToTemplate(template *Template) {
 						if v.Options == nil {
 							v.Options = make(map[string]interface{})
 						}
-						v.Options["requirements"] = fr
+						v.Options["requirements"] = fr[v.Name]
 					}
 				}
 			}
@@ -107,10 +107,6 @@ func getFieldRequirementsMap(protoFileName, enumName string) (map[string][]*core
 
 	return core.CreateFieldRequirementsMap(annotations), nil
 }
-
-// func getFieldRequirementsMap(protoFileName, enumName string) (map[string][]*interface{}, error) {
-// 	return make(map[string][]*interface{}), nil
-// }
 
 func excludeUnwantedProtos(fds []*protokit.FileDescriptor, excludePatterns []*regexp.Regexp) []*protokit.FileDescriptor {
 	descs := make([]*protokit.FileDescriptor, 0)
