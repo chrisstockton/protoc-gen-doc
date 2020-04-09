@@ -16,7 +16,7 @@
     "src/proto/event/v1beta/internal/client_event.proto",
     "src/proto/event/v1beta/internal/event_context.proto"
   ],
-  "parameter": "/Users/cstockton/code/protoc-gen-doc/resources/markdown.tmpl,README.md",
+  "parameter": "/Users/cstockton/code/mercari-data/cloudbuild/community-images/protoc-gen-doc/markdown.tmpl,README.md",
   "protoFile": [
     {
       "name": "google/protobuf/timestamp.proto",

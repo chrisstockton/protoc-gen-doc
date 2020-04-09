@@ -74,6 +74,11 @@
 
 | Name | Screen | Section | Component | Element | Fields |
 | ---- | ------ | ------- | --------- | ------- | ------ |
+{{$global_requirements := index .Options "global_requirements"}} {{if $global_requirements}}
+  {{range $requirement := index .Options "global_requirements" -}}
+  | ALL_EVENTS | {{$requirement.Location.Screen}} | {{$requirement.Location.Section}}| {{$requirement.Location.Component}} | {{$requirement.Location.Element}} | {{range $i, $v := $requirement.Parameters}}{{if $i}},{{end}}{{$v}}{{end}} |
+  {{end -}}
+{{end}}
 {{range $i, $v := .Values -}}
   {{range $requirement := index .Options "requirements" -}}
   | {{$v.Name}} | {{$requirement.Location.Screen}} | {{$requirement.Location.Section}}| {{$requirement.Location.Component}} | {{$requirement.Location.Element}} | {{range $i, $v := $requirement.Parameters}}{{if $i}},{{end}}{{$v}}{{end}} |
